@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+/* TODO: not updated for light mode */
 :root {
   --background: #ffffff;
   --foreground: #171717;
@@ -9,7 +10,7 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
+    --background: #09222f;
     --foreground: #ededed;
   }
 }
