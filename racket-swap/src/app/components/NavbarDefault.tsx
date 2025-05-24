@@ -106,7 +106,7 @@ export const NavbarDefault = () => {
         <SearchBar
           placeholder="Search for rackets, strings, grips, etc." />
         <div className="hidden lg:block">{navList}</div>
-        <SignInButton />
+        <SignInButton className="ml-auto" />
       </div>
     </Navbar>
   );
