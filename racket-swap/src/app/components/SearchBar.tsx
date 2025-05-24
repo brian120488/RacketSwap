@@ -43,7 +43,7 @@ export const SearchBar = () => {
           onChange={handleInputChange}
           onKeyUp={handleKeyPress}
           placeholder={placeholder}
-          className="w-full h-12 bg-transparent placeholder:text-slate-400 text-gray-100 pl-10 pr-28 rounded-xl shadow-sm"
+          className="w-full h-12 bg-transparent placeholder:text-slate-400 text-gray-100 pl-10 pr-28 rounded-xl shadow-xs"
         />
       </div>
     </div>
