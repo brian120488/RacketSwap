@@ -4,8 +4,9 @@ import React from "react";
 import {
   Navbar,
   Typography,
-  Button,
 } from "@material-tailwind/react";
+import { SearchBar } from "./SearchBar";
+import { SignInButton } from "./SignInButton";
  
 export function NavbarDefault() {
   const navList = (
@@ -96,29 +97,16 @@ export function NavbarDefault() {
  
   return (
     <Navbar className="mx-auto px-2 py-2 lg:px-16 lg:py-4">
-      <div className="flex items-center justify-between text-blue-gray-900 border">
+      <div className="h-full flex items-center justify-left text-blue-gray-900 border">
         <img
-          className="h-10 object-cover object-center"
+          className="h-12 object-contain"
           src="corner-white.png"
+          alt="Logo"
         ></img>
+        <SearchBar
+          placeholder="Search for rackets, strings, grips, etc." />
         <div className="hidden lg:block">{navList}</div>
-        <Button variant="outlined" className="rounded-full flex items-center gap-2 lg:px-8 lg:py-3">
-          Sign in{" "}
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            fill="none"
-            viewBox="0 0 24 24"
-            strokeWidth={2}
-            stroke="currentColor"
-            className="h-5 w-5"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"
-            />
-          </svg>
-        </Button>
+        <SignInButton />
       </div>
     </Navbar>
   );
