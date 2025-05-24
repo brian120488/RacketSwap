@@ -7,9 +7,11 @@ import React from 'react';
 
 import { Button } from "@material-tailwind/react";
 
-export function SignInButton() {
+export const SignInButton = () => {
   return (
-    <Button variant="outlined" className="rounded-full flex items-center gap-2 lg:px-8 lg:py-3">
+    <Button 
+      variant="outlined" 
+      className="rounded-full border-12 flex items-center gap-2 lg:px-8 lg:py-3">
       Sign in
       <svg
         xmlns="http://www.w3.org/2000/svg"

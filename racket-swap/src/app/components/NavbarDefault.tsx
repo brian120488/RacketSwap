@@ -8,7 +8,7 @@ import {
 import { SearchBar } from "./SearchBar";
 import { SignInButton } from "./SignInButton";
  
-export function NavbarDefault() {
+export const NavBarDefault = () => {
   const navList = (
     <ul className="mt-2 mb-4 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
       <Typography
