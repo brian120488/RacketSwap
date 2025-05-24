@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 // interface SignInButtonProps {
 //   onClick: () => void;
@@ -7,19 +7,24 @@ import React from 'react';
 
 import { Button } from "@material-tailwind/react";
 
-export const SignInButton = () => {
+interface SignInButtonProps {
+  className?: string; // Optional className prop
+}
+
+export const SignInButton = ({ className }: SignInButtonProps) => {
   return (
-    <Button 
-      variant="outlined" 
-      className="rounded-full border-12 flex items-center gap-2 lg:px-8 lg:py-3">
+    <Button
+      variant="outlined"
+      className={`${className} group rounded-full border-2 border-current flex items-center gap-2 lg:px-8 lg:py-3`}
+    >
       Sign in
       <svg
         xmlns="http://www.w3.org/2000/svg"
         fill="none"
         viewBox="0 0 24 24"
         strokeWidth={2}
-        stroke="currentColor"
-        className="h-5 w-5"
+        stroke="customColor"
+        className={"h-5 w-5 group-hover:animate-spin-slow"}
       >
         <path
           strokeLinecap="round"
