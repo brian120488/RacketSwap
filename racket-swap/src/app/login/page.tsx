@@ -1,41 +1,42 @@
+"use client";
+
 import Image from "next/image";
+import Form from "next/form"
+import Input from "./components/Input";
+import { Button } from "@material-tailwind/react";
+import Link from "next/link";
 
 export default function LoginPage() {
   return (
     <div className="flex h-screen">
       {/* Left Section: Login Form */}
       <div className="flex-1 flex justify-center items-center bg-white">
-        <form className="w-full max-w-md p-6 bg-white shadow-md rounded-lg">
-          <h1 className="text-2xl font-bold mb-6 text-center">Login</h1>
-          <div className="mb-4">
-            <label htmlFor="email" className="block text-sm font-medium text-gray-700">
-              Email:
-            </label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-            />
-          </div>
-          <div className="mb-6">
-            <label htmlFor="password" className="block text-sm font-medium text-gray-700">
-              Password:
-            </label>
-            <input
-              type="password"
-              id="password"
-              name="password"
-              className="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500"
-            />
-          </div>
-          <button
-            type="submit"
-            className="w-full bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 transition duration-300"
-          >
-            Login
-          </button>
-        </form>
+        <div className="w-full max-w-md">
+            <div className="relative content-center size-16 mx-auto">
+                <Image
+                  src="/icon-empty.png"
+                  alt="Logo"
+                  fill={true}
+                  className="object-contain"
+                />
+            </div>
+            <Form className="w-5/8 mx-auto mt-8">
+              <Input type="email" className=""/>
+              <Input type="password" className="mt-8"/>
+              <Button
+                variant="filled"
+                color="blue"
+                className={`w-full rounded-sm justify-center lg:py-3 mt-8 bg-[#b9b9b9]`}>
+                Sign In
+              </Button>
+              <Link href="forgot-password" className="text-blue-400 text-xs mt-12 block text-center">
+                Forgot Password?
+              </Link>
+              <Link href="register" className="text-blue-400 text-xs mt-2 block text-center">
+                Don't have an account?
+              </Link>
+            </Form>
+        </div>
       </div>
 
       {/* Right Section: Image */}
