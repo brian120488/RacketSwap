@@ -96,7 +96,7 @@ export const NavbarDefault = () => {
   );
  
   return (
-    <Navbar className="mx-auto px-2 py-2 lg:px-16 lg:py-4">
+    <Navbar className="mx-auto px-2 py-2 lg:px-16 lg:py-4 bg-[--background]">
       <div className="h-full flex items-center justify-left text-blue-gray-900 border">
         <img
           className="h-12 object-contain"
