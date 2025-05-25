@@ -23,8 +23,8 @@ export const SignInButton = ({ className }: SignInButtonProps) => {
         fill="none"
         viewBox="0 0 24 24"
         strokeWidth={2}
-        stroke="customColor"
-        className={"h-5 w-5 group-hover:animate-spin-slow"}
+        stroke="currentColor"
+        className={"h-5 w-5 group-hover:animate-spin"}
       >
         <path
           strokeLinecap="round"
