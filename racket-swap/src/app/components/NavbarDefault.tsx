@@ -105,7 +105,7 @@ export const NavbarDefault = () => {
         ></img>
         <SearchBar
           placeholder="Search for rackets, strings, grips, etc." />
-        <div className="hidden lg:block">{navList}</div>
+        <div className="block">{navList}</div>
         <SignInButton className="ml-auto" />
       </div>
     </Navbar>
