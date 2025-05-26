@@ -1,5 +1,6 @@
 "use client";
 
+import React, { useState } from "react";
 import Image from "next/image";
 import Form from "next/form"
 import Input from "./components/Input";
@@ -7,12 +8,23 @@ import { Button } from "@material-tailwind/react";
 import Link from "next/link";
 
 export default function LoginPage() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [isEmailValid, setIsEmailValid] = useState(true);
+
+  const handleEmailChange = (value: string) => {
+    setEmail(value);
+ 
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    setIsEmailValid(emailRegex.test(value));
+  };
+
   return (
     <div className="flex h-screen">
       {/* Left Section: Login Form */}
       <div className="flex-1 flex justify-center items-center bg-white">
         <div className="w-full max-w-md">
-            <div className="relative content-center size-16 mx-auto">
+            <div className="relative size-16 mx-auto">
                 <Image
                   src="/icon-empty.png"
                   alt="Logo"
@@ -21,8 +33,17 @@ export default function LoginPage() {
                 />
             </div>
             <Form className="w-5/8 mx-auto mt-8">
-              <Input type="email" className=""/>
-              <Input type="password" className="mt-8"/>
+              <Input 
+                type="email" 
+                value={email}
+                onChange={(e) => handleEmailChange(e.target.value)} 
+                className="text-gray-800 text-sm"
+                isValid={isEmailValid} />
+              <Input 
+                type="password" 
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                className="mt-8" />
               <Button
                 variant="filled"
                 color="blue"
