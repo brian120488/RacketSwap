@@ -23,7 +23,7 @@ export default function LoginPage() {
     e.preventDefault();
     if (isEmailValid) {
       try {
-        const res = await fetch("/login/api", {
+        const res = await fetch("./login/api", {
           method: "GET",
           headers: { "Content-Type": "application/json" },
         });
