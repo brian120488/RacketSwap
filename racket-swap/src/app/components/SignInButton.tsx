@@ -10,7 +10,7 @@ interface SignInButtonProps {
 
 export const SignInButton = ({ className }: SignInButtonProps) => {
   return (
-    <Link href="/login" className={`${className}`}>
+    <Link href="/auth/login" className={`${className}`}>
       <Button
         variant="outlined"
         className={`group rounded-full border-2 border-current flex items-center gap-2 lg:px-8 lg:py-3`}

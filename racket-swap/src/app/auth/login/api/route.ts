@@ -6,8 +6,8 @@ const client = new MongoClient(uri);
 export async function GET() {
   try {
     await client.connect();
-    const database = client.db('sample_airbnb'); // Replace with your database name
-    const collection = database.collection('listingsAndReviews'); // Replace with your collection name
+    const database = client.db('test'); // Replace with your database name
+    const collection = database.collection('users'); // Replace with your collection name
 
     const data = await collection.find({}).toArray(); // Example query to fetch all documents
 
