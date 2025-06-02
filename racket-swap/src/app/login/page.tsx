@@ -21,10 +21,7 @@ export default function LoginPage() {
 
   const handleSignIn = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Sign In Clicked");
-    if (!isEmailValid) {
-      console.log("in")
-      alert("Please enter a valid email address.");
+    if (isEmailValid) {
       try {
         const res = await fetch("/login/api", {
           method: "GET",

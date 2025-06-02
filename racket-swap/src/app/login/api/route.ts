@@ -1,8 +1,6 @@
 import { MongoClient } from 'mongodb';
 
-console.log("user " + process.env.DB_USER);
-console.log("uri " + process.env.DB_URI);
-const uri = process.env.DB_URI || "wth";
+const uri = process.env.DB_URI || "";
 const client = new MongoClient(uri);
 
 export async function GET() {
