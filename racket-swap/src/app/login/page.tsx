@@ -19,6 +19,46 @@ export default function LoginPage() {
     setIsEmailValid(emailRegex.test(value));
   };
 
+  const handleSignIn = async (e: React.FormEvent) => {
+    e.preventDefault();
+    console.log("Sign In Clicked");
+    if (!isEmailValid) {
+      console.log("in")
+      alert("Please enter a valid email address.");
+      try {
+        const res = await fetch("/login/api", {
+          method: "GET",
+          headers: { "Content-Type": "application/json" },
+        });
+        const data = await res.json();
+        console.log("Response data:", data);
+        // if (data.token) {
+        //   localStorage.setItem("token", data.token);
+        //   alert("Login Successful");
+        // } else {
+        //   alert(data.error || "Login failed. Please try again.");
+        // }
+      } catch (error) {
+        console.error("Error during login:", error);
+        alert("An error occurred. Please try again later.");
+      }
+    }
+
+    // const res = await fetch("/api/auth/login", {
+    //   method: "POST",
+    //   headers: { "Content-Type": "application/json" },
+    //   body: JSON.stringify({email, password}),
+    // });
+    // const data = await res.json();
+
+    // if (data.token) {
+    //   localStorage.setItem("token", data.token);
+    //   alert("Login Successful");
+    // } else {
+    //   alert(data.error);
+    // }
+  };  
+
   return (
     <div className="flex h-screen">
       {/* Left Section: Login Form */}
@@ -32,7 +72,7 @@ export default function LoginPage() {
                   className="object-contain"
                 />
             </div>
-            <Form className="w-5/8 mx-auto mt-8">
+            <Form className="w-5/8 mx-auto mt-8" onSubmit={handleSignIn}>
               <Input 
                 type="email" 
                 value={email}
@@ -45,6 +85,7 @@ export default function LoginPage() {
                 onChange={(e) => setPassword(e.target.value)}
                 className="mt-8" />
               <Button
+                type="submit"
                 variant="filled"
                 color="blue"
                 className={`w-full rounded-sm justify-center lg:py-3 mt-8 bg-[#b9b9b9]`}>
