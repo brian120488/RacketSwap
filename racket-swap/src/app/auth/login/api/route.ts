@@ -1,20 +1,49 @@
-import { MongoClient } from 'mongodb';
+import { MongoClient } from "mongodb";
 
 const uri = process.env.DB_URI || "";
 const client = new MongoClient(uri);
 
-export async function GET() {
+export async function POST(request: Request) {
   try {
+    const { email, password } = await request.json();
+
+    if (!email || !password) {
+      return new Response(
+        JSON.stringify({ error: "Email and password are required." }),
+        { status: 400 }
+      );
+    }
+
     await client.connect();
-    const database = client.db('test'); // Replace with your database name
-    const collection = database.collection('users'); // Replace with your collection name
+    const database = client.db("test");
+    const collection = database.collection("users"); 
 
-    const data = await collection.find({}).toArray(); // Example query to fetch all documents
+    const user = await collection.findOne({ email });
 
-    return Response.json({ data });
+    if (!user) {
+      return new Response(
+        JSON.stringify({ error: "User not found." }),
+        { status: 404 }
+      );
+    }
+
+    if (user.password !== password) {
+      return new Response(
+        JSON.stringify({ error: "Invalid password." }),
+        { status: 401 }
+      );
+    }
+
+    return new Response(
+      JSON.stringify({ message: "Login successful.", user }),
+      { status: 200 }
+    );
   } catch (error) {
-    console.error('Error connecting to MongoDB:', error);
-    return Response.json({ error: 'Failed to connect to database' }, { status: 500 });
+    console.error("Error connecting to MongoDB:", error);
+    return new Response(
+      JSON.stringify({ error: "Failed to connect to database." }),
+      { status: 500 }
+    );
   } finally {
     await client.close();
   }

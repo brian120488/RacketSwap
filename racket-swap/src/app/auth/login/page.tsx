@@ -22,23 +22,26 @@ export default function LoginPage() {
   const handleSignIn = async (e: React.FormEvent) => {
     e.preventDefault();
     if (isEmailValid) {
+      console.log(email, password);
       try {
         const res = await fetch("./login/api", {
-          method: "GET",
+          method: "POST", 
           headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email, password })
         });
         const data = await res.json();
         console.log("Response data:", data);
-        // if (data.token) {
-        //   localStorage.setItem("token", data.token);
-        //   alert("Login Successful");
-        // } else {
-        //   alert(data.error || "Login failed. Please try again.");
-        // }
+        if (res.ok) {
+          alert("Login Successful");
+        } else {
+          alert(data.error || "Login failed. Please try again.");
+        }
       } catch (error) {
         console.error("Error during login:", error);
         alert("An error occurred. Please try again later.");
       }
+    } else {
+      alert("Please enter a valid email and password.");
     }
   };  
 
