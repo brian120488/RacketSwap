@@ -22,7 +22,6 @@ export default function LoginPage() {
   const handleSignIn = async (e: React.FormEvent) => {
     e.preventDefault();
     if (isEmailValid) {
-      console.log(email, password);
       try {
         const res = await fetch("./login/api", {
           method: "POST", 

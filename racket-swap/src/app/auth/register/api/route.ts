@@ -1,4 +1,5 @@
 import { MongoClient } from "mongodb";
+import bcrypt from "bcrypt";
 
 const uri = process.env.DB_URI || "";
 const client = new MongoClient(uri);
@@ -22,11 +23,12 @@ export async function POST(request: Request) {
     }
 
     // Insert the new user into the collection
+    const hashedPassword = await bcrypt.hash(password, 10);
     const result = await collection.insertOne({
       firstName,
       lastName,
       email,
-      password, // Note: Passwords should be hashed before storing in production
+      password: hashedPassword,
       createdAt: new Date(),
     });
 

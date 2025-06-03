@@ -1,4 +1,5 @@
 import { MongoClient } from "mongodb";
+import bcrypt from "bcrypt";
 
 const uri = process.env.DB_URI || "";
 const client = new MongoClient(uri);
@@ -27,7 +28,8 @@ export async function POST(request: Request) {
       );
     }
 
-    if (user.password !== password) {
+    const isCorrectPassword = await bcrypt.compare(password, user.password);
+    if (!isCorrectPassword) {
       return new Response(
         JSON.stringify({ error: "Invalid password." }),
         { status: 401 }
