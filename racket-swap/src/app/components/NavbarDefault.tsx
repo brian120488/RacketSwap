@@ -7,6 +7,7 @@ import {
 } from "@material-tailwind/react";
 import { SearchBar } from "./SearchBar";
 import { SignInButton } from "./SignInButton";
+import Link from "next/link";
  
 export const NavbarDefault = () => {
   const navList = (
@@ -57,11 +58,13 @@ export const NavbarDefault = () => {
   return (
     <Navbar className="mx-auto px-2 py-2 lg:px-16 lg:py-4 bg-[--background] border-none">
       <div className="h-full flex items-center justify-left text-blue-gray-900">
-        <img
-          className="h-12 object-contain"
-          src="corner-white.png"
-          alt="Logo"
-        ></img>
+        <Link href="/">
+          <img
+            className="h-12 object-contain"
+            src="corner-white.png"
+            alt="Logo"
+          ></img>
+        </Link>
         <SearchBar
           placeholder="Search for rackets, strings, grips, etc." />
         <div className="block">{navList}</div>
