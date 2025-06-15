@@ -10,9 +10,9 @@ export default function Listings() {
   useEffect(() => {
     const fetchListings = async () => {
       try {
-        const res = await fetch("./listings/api");
+        const res = await fetch("/api/listings");
         const data = await res.json();
-        setListings(data.listings); // Assuming the response contains a `listings` array
+        setListings(data.listings); 
       } catch (error) {
         console.error("Error fetching listings:", error);
       }

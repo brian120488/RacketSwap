@@ -1,5 +1,6 @@
 import { MongoClient } from "mongodb";
-import { S3Client } from '@aws-sdk/client-s3'
+import { S3Client, GetObjectCommand } from "@aws-sdk/client-s3";
+import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
 
 const uri = process.env.DB_URI || "";
 const client = new MongoClient(uri);
@@ -24,7 +25,7 @@ export async function GET() {
 
     // Return the listings as a JSON response
     return new Response(
-      JSON.stringify({ listings }),
+      JSON.stringify({ url, listings }),
       { status: 200, headers: { "Content-Type": "application/json" } }
     );
   } catch (error) {
