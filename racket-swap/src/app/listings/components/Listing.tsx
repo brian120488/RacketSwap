@@ -1,14 +1,16 @@
 interface ListingProps {
-  imageSrc: string;
+  image: string;
   title: string;
   cost: string;
+  lister: string;
+  description?: string;
 }
 
-const Listing: React.FC<ListingProps> = ({ imageSrc, title, cost }) => {
+export const Listing: React.FC<ListingProps> = ({ image, title, cost, lister, description }) => {
   return (
-    <div className="max-w-xs bg-white rounded-lg shadow-md overflow-hidden hover:shadow-lg transition-shadow duration-300">
+    <div className="max-w-xs bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
       <img
-        src={imageSrc}
+        src={image}
         alt={title}
         className="w-full h-48 object-cover"
       />
@@ -19,5 +21,3 @@ const Listing: React.FC<ListingProps> = ({ imageSrc, title, cost }) => {
     </div>
   );
 };
-
-export default Listing;
