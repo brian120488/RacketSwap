@@ -6,11 +6,13 @@ import Input from "../components/Input";
 import { Button } from "@material-tailwind/react";
 import Link from "next/link";
 import Image from "next/image";
+import { useRouter } from 'next/navigation';
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isEmailValid, setIsEmailValid] = useState(true);
+  const router = useRouter();
 
   const handleEmailChange = (value: string) => {
     setEmail(value);
@@ -32,7 +34,7 @@ export default function LoginPage() {
         console.log("Response data:", data);
         if (res.ok) {
           alert("Login Successful");
-          
+          router.back();
         } else {
           alert(data.error || "Login failed. Please try again.");
         }
@@ -43,7 +45,7 @@ export default function LoginPage() {
     } else {
       alert("Please enter a valid email and password.");
     }
-  };  
+  }; 
 
   return (
     <div className="flex-1 flex justify-center items-center bg-white">
