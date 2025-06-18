@@ -1,10 +1,14 @@
 import Image from "next/image";
 import { NavbarDefault } from "./components/NavbarDefault"
+import { cookies } from "next/headers";
 
-export default function Home() {
+export default async function Home() {
+  const cookieStore = await cookies()
+  const isLoggedIn = !!cookieStore.get('authToken')
+
   return (
     <>
-      <NavbarDefault className="fixed"/>
+      <NavbarDefault className="fixed" loggedIn={isLoggedIn} />
       <Image
         src="/home-image.jpg"
         alt="Hero Image"

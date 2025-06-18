@@ -8,12 +8,14 @@ import {
 import { SearchBar } from "./SearchBar";
 import { SignInButton } from "./SignInButton";
 import Link from "next/link";
+
  
 interface NavbarDefaultProps {
+  loggedIn: boolean; // Indicates if the user is logged in
   className?: string; // Optional className prop
 }
- 
-export const NavbarDefault: React.FC<NavbarDefaultProps> = ({ className }) => {
+
+export const NavbarDefault: React.FC<NavbarDefaultProps> = ({ loggedIn, className }) => {
   const navList = (
     <ul className="mt-2 mb-4 flex flex-col gap-2 lg:mb-0 lg:mt-0 lg:flex-row lg:items-center lg:gap-6">
       <Typography
@@ -58,6 +60,12 @@ export const NavbarDefault: React.FC<NavbarDefaultProps> = ({ className }) => {
       </Typography>
     </ul>
   );
+
+  // const [loggedIn, setLoggedIn] = useState(false);
+  // useEffect(() => {
+  //   const authToken = getCookie("authToken");
+  //   setLoggedIn(authToken === "true");
+  // }, []);
  
   return (
     <Navbar
@@ -74,7 +82,7 @@ export const NavbarDefault: React.FC<NavbarDefaultProps> = ({ className }) => {
         <SearchBar
           placeholder="Search for rackets, strings, grips, etc." />
         <div className="block">{navList}</div>
-        <SignInButton className="ml-auto" />
+        { !loggedIn && <SignInButton className="ml-auto" /> }
       </div>
     </Navbar>
   );
