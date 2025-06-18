@@ -34,7 +34,7 @@ export default function LoginPage() {
         console.log("Response data:", data);
         if (res.ok) {
           alert("Login Successful");
-          router.back();
+          router.replace('/')
         } else {
           alert(data.error || "Login failed. Please try again.");
         }
