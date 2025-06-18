@@ -4,16 +4,19 @@ import { NavbarDefault } from "./components/NavbarDefault"
 export default function Home() {
   return (
     <>
-      <NavbarDefault />
-
-      <div className="relative justify-center items-center h-128">
-        <Image
-          src="/badminton-racket.webp"
-          fill={true}
-          alt="Home Image"
-          className="object-contain"
-        />
-      </div>
+      <NavbarDefault className="fixed"/>
+      <Image
+        src="/home-image.jpg"
+        alt="Hero Image"
+        width={4160}
+        height={6240}
+        className="relative -z-1"></Image>
+      <Image
+        src="/100zz.jpeg"
+        alt="Hero Image"
+        width={4000}
+        height={4000}
+        className="relative m-auto rotate-180 -z-10 -mt-80 ml-2"></Image>
     </>
   );
 }

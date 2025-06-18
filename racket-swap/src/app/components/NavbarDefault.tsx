@@ -61,7 +61,7 @@ export const NavbarDefault: React.FC<NavbarDefaultProps> = ({ className }) => {
  
   return (
     <Navbar
-      className={`${className || ""} mx-auto px-2 py-2 lg:px-16 lg:py-4 bg-background border-none`}
+      className={`mx-auto px-2 py-2 lg:px-16 lg:py-4 bg-background border-none rounded-none ${className || ""}`}
     >
       <div className="h-full flex items-center justify-left text-blue-gray-900">
         <Link href="/">
