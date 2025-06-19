@@ -7,6 +7,7 @@ import {
 } from "@material-tailwind/react";
 import { SearchBar } from "./SearchBar";
 import { SignInButton } from "./SignInButton";
+import { LogOutButton } from "./LogOutButton";
 import Link from "next/link";
 
  
@@ -82,6 +83,7 @@ export const NavbarDefault: React.FC<NavbarDefaultProps> = ({ loggedIn, classNam
         <SearchBar
           placeholder="Search for rackets, strings, grips, etc." />
         <div className="block">{navList}</div>
+        { loggedIn && <LogOutButton className="ml-auto" /> }
         { !loggedIn && <SignInButton className="ml-auto" /> }
       </div>
     </Navbar>
