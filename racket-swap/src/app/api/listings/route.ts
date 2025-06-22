@@ -2,8 +2,7 @@ import { MongoClient } from "mongodb";
 import { S3Client, GetObjectCommand } from "@aws-sdk/client-s3";
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
 
-const uri = process.env.DB_URI || "";
-console.log("Connecting to MongoDB at:", uri);
+const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster84648.ynygdkm.mongodb.net`
 const client = new MongoClient(uri);
 
 export async function GET() {
