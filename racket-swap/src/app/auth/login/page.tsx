@@ -58,7 +58,7 @@ export default function LoginPage() {
                 className="object-contain"
               />
           </div>
-          <Form className="w-5/8 mx-auto mt-8" onSubmit={handleSignIn}>
+          <Form className="w-5/8 mx-auto mt-8" onSubmit={handleSignIn} action="">
             <Input 
               type="email" 
               value={email}
