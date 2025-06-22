@@ -81,7 +81,7 @@ export default function LoginPage() {
               Forgot Password?
             </Link>
             <Link href="register" className="text-blue-400 text-xs mt-2 block text-center">
-              Don't have an account?
+              Don&apos;t have an account?
             </Link>
           </Form>
       </div>

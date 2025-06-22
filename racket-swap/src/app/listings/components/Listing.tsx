@@ -2,11 +2,9 @@ interface ListingProps {
   image: string;
   title: string;
   cost: string;
-  lister: string;
-  description?: string;
 }
 
-export const Listing: React.FC<ListingProps> = ({ image, title, cost, lister, description }) => {
+export const Listing: React.FC<ListingProps> = ({ image, title, cost }) => {
   return (
     <div className="max-w-xs bg-white rounded-lg shadow-md hover:shadow-lg transition-shadow duration-300">
       <img

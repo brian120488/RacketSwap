@@ -60,7 +60,7 @@ export default function LoginPage() {
     <div className="flex-1 flex justify-center items-center bg-white">
       <div className="w-full max-w-md">
           <div className="w-5/8 relative mx-auto">
-              <p className="text-gray-600 text-center">Enter your details, and we'll make sure a human gets in touch with you</p>
+              <p className="text-gray-600 text-center">Enter your details, and we&apos;ll make sure a human gets in touch with you</p>
           </div>
           <Form className="w-5/8 mx-auto mt-8" onSubmit={handleRegister}>
             <Input 
@@ -90,7 +90,7 @@ export default function LoginPage() {
               variant="filled"
               color="blue"
               className={`w-full rounded-sm justify-center lg:py-3 mt-8 bg-[#b9b9b9]`}>
-              Let's go
+              Let&apos;s go
             </Button>
             <Link href="login" className="text-blue-400 text-xs mt-12 block text-center">
               I already have an account

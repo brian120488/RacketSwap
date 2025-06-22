@@ -41,7 +41,6 @@ export default function Listings() {
               image={listings[0]?.image || "https://via.placeholder.com/150"}
               title={listings[0]?.title || "Default Title"}
               cost={listings[0]?.cost || "Default Cost"}
-              lister={listings[0]?.lister || "Default Lister"}
             />
           ))}
         </div>
