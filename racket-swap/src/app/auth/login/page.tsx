@@ -74,7 +74,15 @@ export default function LoginPage() {
               type="submit"
               variant="filled"
               color="blue"
-              className={`w-full rounded-sm justify-center lg:py-3 mt-8 bg-[#b9b9b9]`}>
+              className="w-full rounded-sm justify-center lg:py-3 mt-8 bg-[#b9b9b9]"
+              onClick={() => {}}
+              disabled={false}
+              placeholder="Sign In"
+              onResize={() => {}}
+              onResizeCapture={() => {}}
+              onPointerEnterCapture={() => {}}
+              onPointerLeaveCapture={() => {}}
+            >
               Sign In
             </Button>
             <Link href="forgot-password" className="text-blue-400 text-xs mt-12 block text-center">
