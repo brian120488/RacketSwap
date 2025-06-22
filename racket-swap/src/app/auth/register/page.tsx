@@ -62,7 +62,7 @@ export default function LoginPage() {
           <div className="w-5/8 relative mx-auto">
               <p className="text-gray-600 text-center">Enter your details, and we&apos;ll make sure a human gets in touch with you</p>
           </div>
-          <Form className="w-5/8 mx-auto mt-8" onSubmit={handleRegister}>
+          <Form className="w-5/8 mx-auto mt-8" onSubmit={handleRegister} action="">
             <Input 
               type="First Name" 
               value={firstName}
@@ -89,7 +89,14 @@ export default function LoginPage() {
               type="submit"
               variant="filled"
               color="blue"
-              className={`w-full rounded-sm justify-center lg:py-3 mt-8 bg-[#b9b9b9]`}>
+              className={`w-full rounded-sm justify-center lg:py-3 mt-8 bg-[#b9b9b9]`}
+              onClick={() => {}}
+              disabled={false}
+              placeholder="Sign In"
+              onResize={() => {}}
+              onResizeCapture={() => {}}
+              onPointerEnterCapture={() => {}}
+              onPointerLeaveCapture={() => {}}>
               Let&apos;s go
             </Button>
             <Link href="login" className="text-blue-400 text-xs mt-12 block text-center">
