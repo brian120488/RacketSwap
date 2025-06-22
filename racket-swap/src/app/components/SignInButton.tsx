@@ -13,6 +13,11 @@ export const SignInButton = ({ className }: SignInButtonProps) => {
       <Button
         variant="outlined"
         className={`group rounded-full border-2 border-current flex items-center gap-2 lg:px-8 lg:py-3`}
+        placeholder="Sign in"
+        onResize={() => {}}
+        onResizeCapture={() => {}}
+        onPointerEnterCapture={() => {}}
+        onPointerLeaveCapture={() => {}}
       >
         Sign in
         <svg

@@ -2,9 +2,8 @@
 
 import React, { useState } from 'react';
 
-export const SearchBar = () => {
+export const SearchBar = ({ placeholder }: { placeholder: string }) => {
   const [query, setQuery] = useState('');
-  const placeholder = "Search for brand, model, etc.";
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setQuery(event.target.value);

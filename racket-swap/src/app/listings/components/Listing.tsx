@@ -1,7 +1,7 @@
-interface ListingProps {
+export interface ListingProps {
   image: string;
   title: string;
-  cost: string;
+  cost: number;
 }
 
 export const Listing: React.FC<ListingProps> = ({ image, title, cost }) => {
