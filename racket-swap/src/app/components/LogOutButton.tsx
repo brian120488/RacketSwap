@@ -24,7 +24,7 @@ export const LogOutButton = ({ className }: LogOutButtonProps) => {
         alert(data.error || 'Logout failed. Please try again.');
       }
     } catch (error) {
-      alert('An error occurred. Please try again later.');
+      alert('An error occurred. Please try again later. ' + error);
     }
   };
 

@@ -11,7 +11,7 @@ export async function POST() {
     );
   } catch (error) {
     return NextResponse.json(
-      { error: "Failed to delete cookie." },
+      { error: "Failed to delete cookie." + error },
       { status: 500 }
     );
   }
