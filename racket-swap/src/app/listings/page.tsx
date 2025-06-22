@@ -17,7 +17,7 @@ export default function Listings() {
         console.error("Error fetching listings:", error);
       }
     };
-    console.log("hi");
+
     fetchListings();
   }, []);
 
@@ -26,7 +26,7 @@ export default function Listings() {
       <NavbarDefault />
       <div className="flex justify-center mt-6">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8">
-          {listings.length > 0 ? (
+          {listings ? (
             listings.map((listing, index) => (
               <Listing
                 key={index}
