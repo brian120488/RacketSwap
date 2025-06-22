@@ -33,7 +33,11 @@ export const LogOutButton = ({ className }: LogOutButtonProps) => {
       variant="outlined"
       className={`group rounded-full border-2 border-current flex items-center gap-2 lg:px-8 lg:py-3 ${className}`}
       onClick={handleLogOut}
-    >
+      placeholder="Sign In"
+      onResize={() => {}}
+      onResizeCapture={() => {}}
+      onPointerEnterCapture={() => {}}
+      onPointerLeaveCapture={() => {}}>
       Log Out
       <svg
         xmlns="http://www.w3.org/2000/svg"

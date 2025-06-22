@@ -91,7 +91,6 @@ export default function LoginPage() {
               color="blue"
               className={`w-full rounded-sm justify-center lg:py-3 mt-8 bg-[#b9b9b9]`}
               onClick={() => {}}
-              disabled={false}
               placeholder="Sign In"
               onResize={() => {}}
               onResizeCapture={() => {}}
