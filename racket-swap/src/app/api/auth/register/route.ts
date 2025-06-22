@@ -1,7 +1,7 @@
 import { MongoClient } from "mongodb";
 import bcrypt from "bcrypt";
 
-const uri = process.env.DB_URI || "";
+const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster84648.ynygdkm.mongodb.net`
 const client = new MongoClient(uri);
 
 export async function POST(request: Request) {

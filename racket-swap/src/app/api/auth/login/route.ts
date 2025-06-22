@@ -3,7 +3,7 @@ import bcrypt from "bcrypt";
 import { setCookie } from 'cookies-next/server';
 import { NextRequest, NextResponse } from "next/server";  
 
-const uri = process.env.DB_URI || "";
+const uri = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASS}@cluster84648.ynygdkm.mongodb.net`
 const client = new MongoClient(uri);
 
 export async function POST(req: NextRequest) {
