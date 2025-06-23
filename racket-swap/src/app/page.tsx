@@ -8,8 +8,8 @@ export default async function Home() {
 
   return (
     <>
-      <NavbarDefault className="fixed" loggedIn={isLoggedIn} />
-      <Image
+      <NavbarDefault className="fixed z-1" loggedIn={isLoggedIn} />
+      {/* <Image
         src="/home-image.jpg"
         alt="Hero Image"
         width={4160}
@@ -20,7 +20,7 @@ export default async function Home() {
         alt="Hero Image"
         width={4000}
         height={4000}
-        className="relative m-auto rotate-180 -z-10 -mt-80 ml-2"></Image>
+        className="relative m-auto rotate-180 -z-10 -mt-80 ml-2"></Image> */}
     </>
   );
 }
