@@ -20,6 +20,7 @@ export default function Listings() {
         const res = await fetch("/api/listings");
         const data = await res.json();
         setListings(data.listings); 
+        console.log(data.listings); // Log the fetched listings
       } catch (error) {
         console.error("Error fetching listings:", error);
       }
@@ -29,7 +30,7 @@ export default function Listings() {
   }, []);
 
   const handleAddListing = async (newListing: ListingProps) => {
-    setListings((prevListings) => [...prevListings, newListing]);
+    // setListings((prevListings) => [...prevListings, newListing]);
     setIsModalOpen(false); 
     console.log("New listing added:", newListing);
     

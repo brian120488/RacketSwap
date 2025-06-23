@@ -9,32 +9,36 @@ export async function GET() {
   try {
     // Connect to the database
     await client.connect();
-    const database = client.db("test"); 
+    const database = client.db("test");
     const collection = database.collection("listings");
 
     // Fetch all listings from the collection
     const listings = await collection.find({}).toArray();
 
-    // Retrieve S3 image URLS
-    const s3 = new S3Client({ region: process.env.AWS_REGION })
-    const command = new GetObjectCommand({
-      Bucket: process.env.AWS_BUCKET_NAME!,
-      Key: 'listings/badminton.jpg',
-    });
-    const url = await getSignedUrl(s3, command);
-    listings[0].image = url;
-    console.log(url);
-    
-    // Return the listings as a JSON response
+    // Retrieve S3 image URLs for each listing
+    const s3 = new S3Client({ region: process.env.AWS_REGION });
+    const updatedListings = await Promise.all(
+      listings.map(async (listing) => {
+        const command = new GetObjectCommand({
+          Bucket: process.env.AWS_BUCKET_NAME!,
+          Key: listing.imageKey,
+        });
+        const url = await getSignedUrl(s3, command, { expiresIn: 3600 }); // URL valid for 1 hour
+        const { imageKey, createdAt, _id, ...rest } = listing; // Remove imageKey from the response
+        return { ...rest, image: url }; // Replace imageKey with signed URL
+      })
+    );
+
+    // Return the listings with updated image URLs
     return new Response(
-      JSON.stringify({ listings }),
+      JSON.stringify({ listings: updatedListings }),
       { status: 200, headers: { "Content-Type": "application/json" } }
     );
   } catch (error) {
     console.error("Error fetching listings:", error);
     return new Response(
       JSON.stringify({ error: "Failed to fetch listings." }),
-      { status: 500 }
+      { status: 500, headers: { "Content-Type": "application/json" } }
     );
   } finally {
     await client.close();
@@ -43,39 +47,54 @@ export async function GET() {
 
 export async function POST(request: Request) {
   try {
-    console.log("hi");
     const { image, title, cost } = await request.json();
+
+    // Validate the incoming data
+    if (!image || !title || !cost) {
+      return new Response(
+        JSON.stringify({ error: "Missing required fields: image, title, or cost." }),
+        { status: 400, headers: { "Content-Type": "application/json" } }
+      );
+    }
 
     // Connect to the database
     await client.connect();
-    const database = client.db("test"); 
+    const database = client.db("test");
     const collection = database.collection("listings");
 
-    // Insert listing to collection
-    const listings = await collection.find({}).toArray();
-    const result = await collection.insertOne({ image, title, cost });
+    // Generate S3 image key
+    const imageKey = `listings/${Date.now()}-${title.replace(/\s+/g, "-")}.jpg`;
+    const base64Image = image.split(",")[1];
 
-    // Add image to S3
-    const s3 = new S3Client({ region: process.env.AWS_REGION })
-    const imageKey = `listings/${Date.now()}-${title.replace(/\s+/g, "-")}.jpg`; // Unique key for the image
+    // Upload image to S3
+    const s3 = new S3Client({ region: process.env.AWS_REGION });
     const command = new PutObjectCommand({
       Bucket: process.env.AWS_BUCKET_NAME!,
       Key: imageKey,
-      Body: Buffer.from(image, "base64"),
+      Body: Buffer.from(base64Image, "base64"), // Assuming the image is sent as a base64 string
       ContentType: "image/jpeg",
     });
     await s3.send(command);
 
-    // Return the listings as a JSON response
+    // Insert listing into MongoDB
+    const newListing = {
+      title,
+      cost,
+      imageKey,
+      createdAt: new Date(),
+    };
+    await collection.insertOne(newListing);
+
+    // Return success response
     return new Response(
-      JSON.stringify({ listings }),
-      { status: 200, headers: { "Content-Type": "application/json" } }
+      JSON.stringify({ message: "Listing added successfully.", listing: newListing }),
+      { status: 201, headers: { "Content-Type": "application/json" } }
     );
   } catch (error) {
     console.error("Error adding listing:", error);
     return new Response(
       JSON.stringify({ error: "Failed to add listing." }),
-      { status: 500 }
+      { status: 500, headers: { "Content-Type": "application/json" } }
     );
   } finally {
     await client.close();
