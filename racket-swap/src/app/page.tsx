@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { NavbarDefault } from "./components/NavbarDefault"
 import { cookies } from "next/headers";
 
