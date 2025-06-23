@@ -8,11 +8,6 @@ import { Modal } from "./components/Modal"
 export default function Listings() {
   const [listings, setListings] = useState<ListingProps[]>([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [newListing, setNewListing] = useState<ListingProps>({
-    image: "",
-    title: "",
-    cost: 0,
-  });
 
   useEffect(() => {
     const fetchListings = async () => {

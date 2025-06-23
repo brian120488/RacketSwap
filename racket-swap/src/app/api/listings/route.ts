@@ -24,8 +24,7 @@ export async function GET() {
           Key: listing.imageKey,
         });
         const url = await getSignedUrl(s3, command, { expiresIn: 3600 }); // URL valid for 1 hour
-        const { imageKey, createdAt, _id, ...rest } = listing; // Remove imageKey from the response
-        return { ...rest, image: url }; // Replace imageKey with signed URL
+        return { title: listing.title, cost: listing.cost, image: url }; // Replace imageKey with signed URL
       })
     );
 
